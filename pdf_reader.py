@@ -142,9 +142,22 @@ class CoelbaPDFReader:
             match = re.search(pattern, text, re.IGNORECASE)
             if match:
                 valor = match.group(1).strip()
-                # Validar formato de valor monetário
-                if re.match(r'\d+[.,]\d{2}', valor):
-                    return valor.replace('.', '').replace(',', '.')
+                # Normalizar formato brasileiro (1.234,56) para formato padrão (1234.56)
+                # ou formato com ponto como decimal (150.75)
+                if ',' in valor and '.' in valor:
+                    # Formato brasileiro: 1.234,56 -> 1234.56
+                    valor = valor.replace('.', '').replace(',', '.')
+                elif ',' in valor:
+                    # Formato com vírgula como decimal: 150,75 -> 150.75
+                    valor = valor.replace(',', '.')
+                # Se só tem ponto, assume que é decimal: 150.75 -> 150.75
+                
+                # Validar que é um número válido
+                try:
+                    float(valor)
+                    return valor
+                except ValueError:
+                    continue
         
         return None
     

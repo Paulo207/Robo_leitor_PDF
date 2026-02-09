@@ -23,25 +23,58 @@ class TestPDFReader(unittest.TestCase):
     
     def test_extract_uc_pattern(self):
         """Testa extração de UC com texto de exemplo"""
-        # Criar um leitor mock (sem arquivo real)
-        text = "Unidade Consumidora: 123456789"
-        reader = CoelbaPDFReader.__new__(CoelbaPDFReader)
-        uc = reader._extract_uc(text)
-        self.assertEqual(uc, "123456789")
+        # Criar um arquivo temporário para teste
+        import tempfile
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.pdf', delete=False) as f:
+            temp_path = f.name
+        
+        try:
+            reader = CoelbaPDFReader(temp_path)
+            text = "Unidade Consumidora: 123456789"
+            uc = reader._extract_uc(text)
+            self.assertEqual(uc, "123456789")
+        finally:
+            Path(temp_path).unlink()
     
     def test_extract_valor_pattern(self):
         """Testa extração de valor com texto de exemplo"""
-        text = "Valor Total: R$ 150,75"
-        reader = CoelbaPDFReader.__new__(CoelbaPDFReader)
-        valor = reader._extract_valor_total(text)
-        self.assertEqual(valor, "150.75")
+        import tempfile
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.pdf', delete=False) as f:
+            temp_path = f.name
+        
+        try:
+            reader = CoelbaPDFReader(temp_path)
+            
+            # Testar formato com vírgula
+            text1 = "Valor Total: R$ 150,75"
+            valor1 = reader._extract_valor_total(text1)
+            self.assertEqual(valor1, "150.75")
+            
+            # Testar formato com ponto
+            text2 = "Valor Total: R$ 150.75"
+            valor2 = reader._extract_valor_total(text2)
+            self.assertEqual(valor2, "150.75")
+            
+            # Testar formato brasileiro completo
+            text3 = "Valor Total: R$ 1.234,56"
+            valor3 = reader._extract_valor_total(text3)
+            self.assertEqual(valor3, "1234.56")
+        finally:
+            Path(temp_path).unlink()
     
     def test_extract_consumo_pattern(self):
         """Testa extração de consumo com texto de exemplo"""
-        text = "Consumo: 350 kWh"
-        reader = CoelbaPDFReader.__new__(CoelbaPDFReader)
-        consumo = reader._extract_consumo(text)
-        self.assertEqual(consumo, "350")
+        import tempfile
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.pdf', delete=False) as f:
+            temp_path = f.name
+        
+        try:
+            reader = CoelbaPDFReader(temp_path)
+            text = "Consumo: 350 kWh"
+            consumo = reader._extract_consumo(text)
+            self.assertEqual(consumo, "350")
+        finally:
+            Path(temp_path).unlink()
 
 
 class TestExcelExporter(unittest.TestCase):
