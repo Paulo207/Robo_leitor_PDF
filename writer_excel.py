@@ -195,5 +195,5 @@ class WriterExcel:
             
             return float(valor_limpo)
             
-        except:
+        except Exception:
             return 0.0
