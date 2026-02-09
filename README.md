@@ -122,11 +122,9 @@ Responsável por:
 
 ## 📦 Dependências
 
-- **PyPDF2**: Manipulação de arquivos PDF
 - **pdfplumber**: Extração avançada de texto de PDFs
 - **pandas**: Manipulação de dados
 - **openpyxl**: Criação e edição de arquivos Excel
-- **python-dotenv**: Gerenciamento de variáveis de ambiente
 
 ## 🤝 Contribuindo
 
