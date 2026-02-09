@@ -1,0 +1,30 @@
+# PDF Processing
+pdfplumber==0.10.3
+pdfminer.six==20221105
+PyPDF2==3.0.1
+
+# OCR
+pytesseract==0.3.10
+Pillow==10.1.0
+pdf2image==1.16.3
+
+# Excel/Sheets
+pandas==2.1.4
+openpyxl==3.1.2
+gspread==5.12.3
+google-auth==2.25.2
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+
+# AI/LLM (optional - can use OpenAI, Anthropic, etc.)
+openai==1.6.1
+
+# UI
+streamlit==1.29.0
+
+# File monitoring
+watchdog==3.0.0
+
+# Utilities
+python-dotenv==1.0.0
+regex==2023.12.25

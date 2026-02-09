@@ -1,0 +1,70 @@
+{
+  "campo_configuracoes": {
+    "cliente": {
+      "labels": ["CLIENTE", "NOME DO CLIENTE", "TITULAR"],
+      "tipo": "texto",
+      "obrigatorio": true
+    },
+    "uc": {
+      "labels": ["UNIDADE CONSUMIDORA", "UC", "Nº DA INSTALAÇÃO", "INSTALAÇÃO"],
+      "tipo": "numero",
+      "obrigatorio": true,
+      "pattern": "\\d{10,15}"
+    },
+    "mes_referencia": {
+      "labels": ["MÊS DE REFERÊNCIA", "REFERÊNCIA", "PERÍODO DE CONSUMO"],
+      "tipo": "data",
+      "obrigatorio": true,
+      "pattern": "\\d{2}/\\d{4}|[A-Z]{3}/\\d{4}"
+    },
+    "data_vencimento": {
+      "labels": ["VENCIMENTO", "DATA DE VENCIMENTO", "VENCE EM"],
+      "tipo": "data",
+      "obrigatorio": true,
+      "pattern": "\\d{2}/\\d{2}/\\d{4}"
+    },
+    "valor_total": {
+      "labels": ["VALOR TOTAL", "TOTAL A PAGAR", "TOTAL DA FATURA"],
+      "tipo": "monetario",
+      "obrigatorio": true,
+      "pattern": "R?\\$?\\s*\\d{1,3}(?:\\.\\d{3})*,\\d{2}"
+    },
+    "consumo_kwh": {
+      "labels": ["CONSUMO", "CONSUMO kWh", "ENERGIA CONSUMIDA"],
+      "tipo": "numero",
+      "obrigatorio": true,
+      "pattern": "\\d+(?:\\.\\d+)?\\s*kWh"
+    },
+    "icms": {
+      "labels": ["ICMS", "IMPOSTO ICMS"],
+      "tipo": "monetario",
+      "obrigatorio": false,
+      "pattern": "R?\\$?\\s*\\d{1,3}(?:\\.\\d{3})*,\\d{2}"
+    },
+    "pis": {
+      "labels": ["PIS", "CONTRIB PIS"],
+      "tipo": "monetario",
+      "obrigatorio": false,
+      "pattern": "R?\\$?\\s*\\d{1,3}(?:\\.\\d{3})*,\\d{2}"
+    },
+    "cofins": {
+      "labels": ["COFINS", "CONTRIB COFINS"],
+      "tipo": "monetario",
+      "obrigatorio": false,
+      "pattern": "R?\\$?\\s*\\d{1,3}(?:\\.\\d{3})*,\\d{2}"
+    },
+    "cip": {
+      "labels": ["CIP", "CONTRIB ILUM PUBLICA", "COSIP"],
+      "tipo": "monetario",
+      "obrigatorio": false,
+      "pattern": "R?\\$?\\s*\\d{1,3}(?:\\.\\d{3})*,\\d{2}"
+    }
+  },
+  "opcoes_gerais": {
+    "usar_ia_fallback": true,
+    "usar_ocr_fallback": true,
+    "validar_valores": true,
+    "renomear_arquivos": true,
+    "formato_nome_arquivo": "{uc}_{mes}_{ano}.pdf"
+  }
+}
